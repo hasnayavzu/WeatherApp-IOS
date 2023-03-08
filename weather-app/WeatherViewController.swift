@@ -55,7 +55,8 @@ class WeatherViewController: UIViewController {
         temperatureLabel.showAnimatedGradientSkeleton()
     }
 
-    @IBAction func addLocationButtonTapped(_ sender: Any) {
+    @IBAction func addCityButtonTapped(_ sender: Any) {
+        performSegue(withIdentifier: "showAddCity", sender: nil)
     }
     
     @IBAction func locationButtonTapped(_ sender: Any) {

@@ -61,7 +61,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="rVW-tb-4EI">
                             <connections>
-                                <action selector="addLocationButtonTapped:" destination="BYZ-38-t0r" id="9M6-gE-em0"/>
+                                <action selector="addCityButtonTapped:" destination="BYZ-38-t0r" id="oJM-Oc-f4J"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -69,27 +69,92 @@
                         <outlet property="conditionImageView" destination="ftc-ra-6TE" id="mmH-2c-86C"/>
                         <outlet property="conditionLabel" destination="wfp-1z-B2Y" id="VJv-03-oo8"/>
                         <outlet property="temperatureLabel" destination="fgy-FO-ICK" id="fOq-4b-dr0"/>
-                        <segue destination="ega-cg-1xV" kind="presentation" id="6w6-Tb-uBB"/>
+                        <segue destination="ega-cg-1xV" kind="presentation" identifier="showAddCity" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="6w6-Tb-uBB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1031.7757009345794" y="-27.213822894168469"/>
         </scene>
-        <!--View Controller-->
+        <!--Add City View Controller-->
         <scene sceneID="dne-Y1-dlk">
             <objects>
-                <viewController id="ega-cg-1xV" sceneMemberID="viewController">
+                <viewController id="ega-cg-1xV" customClass="addCityViewController" customModule="weather_app" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zW2-lx-0wd">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="869"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nN9-eA-CNj">
+                                <rect key="frame" x="74" y="201.33333333333331" width="280" height="245.33333333333331"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="xH4-p2-fzO">
+                                        <rect key="frame" x="24" y="24" width="232" height="197.33333333333334"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter City" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WSq-wQ-VAK">
+                                                <rect key="frame" x="0.0" y="0.0" width="232" height="24.666666666666668"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jkR-5r-JhN">
+                                                <rect key="frame" x="0.0" y="36.666666666666657" width="232" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="75J-Yc-mMA"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9G1-bS-KkQ">
+                                                <rect key="frame" x="0.0" y="88.666666666666657" width="232" height="40"/>
+                                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="jfc-9t-n0T"/>
+                                                </constraints>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Search">
+                                                    <fontDescription key="titleFontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="LwI-9K-EJp">
+                                                <rect key="frame" x="0.0" y="140.66666666666666" width="232" height="20"/>
+                                            </activityIndicatorView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hPi-q7-vj7">
+                                                <rect key="frame" x="0.0" y="172.66666666666666" width="232" height="24.666666666666657"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="xH4-p2-fzO" secondAttribute="trailing" constant="24" id="Gph-nG-cLH"/>
+                                    <constraint firstAttribute="bottom" secondItem="xH4-p2-fzO" secondAttribute="bottom" constant="24" id="TlK-l4-Zev"/>
+                                    <constraint firstItem="xH4-p2-fzO" firstAttribute="leading" secondItem="nN9-eA-CNj" secondAttribute="leading" constant="24" id="YLR-mA-gTo"/>
+                                    <constraint firstItem="xH4-p2-fzO" firstAttribute="top" secondItem="nN9-eA-CNj" secondAttribute="top" constant="24" id="pfk-48-Cq3"/>
+                                    <constraint firstAttribute="width" constant="280" id="yI9-0x-EGe"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="FcX-e2-Pe6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="nN9-eA-CNj" firstAttribute="centerX" secondItem="zW2-lx-0wd" secondAttribute="centerX" id="1kN-be-A04"/>
+                            <constraint firstItem="nN9-eA-CNj" firstAttribute="centerY" secondItem="zW2-lx-0wd" secondAttribute="centerY" multiplier="0.7" id="aaZ-jd-knC"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GTj-9E-v2B" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1909" y="-27"/>
+            <point key="canvasLocation" x="1907.9439252336447" y="-27.213822894168469"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GBI-jv-MJK">
@@ -113,8 +178,14 @@
     <resources>
         <image name="imClouds" width="512" height="512"/>
         <image name="location" catalog="system" width="128" height="121"/>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
