@@ -85,10 +85,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nN9-eA-CNj">
-                                <rect key="frame" x="74" y="201.33333333333331" width="280" height="245.33333333333331"/>
+                                <rect key="frame" x="74" y="202.66666666666669" width="280" height="242.66666666666669"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="xH4-p2-fzO">
-                                        <rect key="frame" x="24" y="24" width="232" height="197.33333333333334"/>
+                                        <rect key="frame" x="24" y="24" width="232" height="194.66666666666666"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter City" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WSq-wQ-VAK">
                                                 <rect key="frame" x="0.0" y="0.0" width="232" height="24.666666666666668"/>
@@ -102,7 +102,7 @@
                                                     <constraint firstAttribute="height" constant="40" id="75J-Yc-mMA"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                                <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9G1-bS-KkQ">
                                                 <rect key="frame" x="0.0" y="88.666666666666657" width="232" height="40"/>
@@ -115,13 +115,16 @@
                                                 <buttonConfiguration key="configuration" style="plain" title="Search">
                                                     <fontDescription key="titleFontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="searchButtonTapped:" destination="ega-cg-1xV" eventType="touchUpInside" id="CW4-cu-xlw"/>
+                                                </connections>
                                             </button>
                                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="LwI-9K-EJp">
                                                 <rect key="frame" x="0.0" y="140.66666666666666" width="232" height="20"/>
                                             </activityIndicatorView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hPi-q7-vj7">
-                                                <rect key="frame" x="0.0" y="172.66666666666666" width="232" height="24.666666666666657"/>
-                                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hPi-q7-vj7">
+                                                <rect key="frame" x="0.0" y="172.66666666666666" width="232" height="22"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -151,6 +154,12 @@
                             <constraint firstItem="nN9-eA-CNj" firstAttribute="centerY" secondItem="zW2-lx-0wd" secondAttribute="centerY" multiplier="0.7" id="aaZ-jd-knC"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="activityIndicatorView" destination="LwI-9K-EJp" id="E35-BE-fkD"/>
+                        <outlet property="cityTextField" destination="jkR-5r-JhN" id="toB-L3-k2l"/>
+                        <outlet property="searchButton" destination="9G1-bS-KkQ" id="7cG-W2-9nf"/>
+                        <outlet property="statusLabel" destination="hPi-q7-vj7" id="HaO-XN-sBp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GTj-9E-v2B" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

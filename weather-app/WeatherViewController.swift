@@ -8,6 +8,10 @@
 import UIKit
 import SkeletonView
 
+protocol WeatherViewControllerDelegate: class {
+    func didUpdateWeatherFromSearch(model: WeatherModel)
+}
+
 class WeatherViewController: UIViewController {
 
     @IBOutlet weak var temperatureLabel: UILabel!
@@ -28,19 +32,21 @@ class WeatherViewController: UIViewController {
         weatherManager.fetchWeather(byCity: "Istanbul") { [weak self] (result) in
             guard let this = self else {return}
             switch result {
-            case .success(let weatherData):
-                this.updateView(with: weatherData)
+            case .success(let model):
+                this.updateView(with: model)
             case .failure(let error):
                 print("error here: \(error)")
             }
         }
     }
     
-    private func updateView(with data: WeatherData) {
+    private func updateView(with model: WeatherModel) {
         hideAnimation()
-        conditionLabel.text = data.weather.first?.description
-        temperatureLabel.text = data.main.temp.toString().appending("°C")
-        navigationItem.title = data.name
+        
+        conditionLabel.text = model.conditionDescription
+        temperatureLabel.text = model.temp.toString().appending("°C")
+        navigationItem.title = model.countryName
+        conditionImageView.image = UIImage(named: model.conditionImage)
     }
     
     private func hideAnimation() {
@@ -59,8 +65,21 @@ class WeatherViewController: UIViewController {
         performSegue(withIdentifier: "showAddCity", sender: nil)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showAddCity" {
+            if let destination = segue.destination as? addCityViewController {
+                destination.delegate = self
+            }
+        }
+    }
+    
     @IBAction func locationButtonTapped(_ sender: Any) {
     }
     
 }
 
+extension WeatherViewController: WeatherViewControllerDelegate {
+    func didUpdateWeatherFromSearch(model: WeatherModel) {
+        <#code#>
+    }
+}
