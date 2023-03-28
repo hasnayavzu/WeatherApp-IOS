@@ -59,6 +59,7 @@ class addCityViewController: UIViewController {
         statusLabel.isHidden = false
         statusLabel.textColor = .systemRed
         statusLabel.text = text
+        activityIndicatorView.stopAnimating()
     }
     
     private func handleSearch(query: String) {
