@@ -12,9 +12,12 @@ enum WeatherError: Error, LocalizedError {
     
     case unknown
     case invalidCity
+    case custom(description: String)
     
     var errorDescription: String? {
         switch self {
+        case .custom(let description):
+            return description
         case .invalidCity:
             return "This is an invalid city. Please try again."
         case .unknown:
@@ -42,7 +45,7 @@ struct WeatherManager {
             case .failure(let error):
                 
                 if response.response?.statusCode == 404 {
-                    let invalidCityError = WeatherError.invalidCity
+                    let invalidCityError = WeatherError.custom(description: "This is so random")
                     completion(.failure(invalidCityError))
                 } else {
                     completion(.failure(error))
