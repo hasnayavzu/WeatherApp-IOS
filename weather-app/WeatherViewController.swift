@@ -79,7 +79,12 @@ class WeatherViewController: UIViewController {
 }
 
 extension WeatherViewController: WeatherViewControllerDelegate {
+    
     func didUpdateWeatherFromSearch(model: WeatherModel) {
-        <#code#>
+        presentedViewController?.dismiss(animated: true, completion: { [weak self] in
+            guard let this = self else {return}
+            this.updateView(with: model)
+        })
     }
+    
 }
