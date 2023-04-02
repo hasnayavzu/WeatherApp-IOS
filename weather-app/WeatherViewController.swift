@@ -31,7 +31,6 @@ class WeatherViewController: UIViewController {
         super.viewDidLoad()
         showAnimation()
         fetchWeather()
-        // weatherManager.fetchWeather(byCity: "Istanbul")
     }
     
     private func fetchWeather() {
@@ -86,6 +85,7 @@ class WeatherViewController: UIViewController {
             locationManager.requestLocation()
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
+            locationManager.requestLocation()
         default:
             promptForLocationPermission()
         }
@@ -118,7 +118,22 @@ extension WeatherViewController: WeatherViewControllerDelegate {
 
 extension WeatherViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
+        if let location = locations.last {
+            manager.stopUpdatingLocation()
+            let lat = location.coordinate.latitude
+            let lng = location.coordinate.longitude
+            
+            weatherManager.fetchWeather(lat: lat, lon: lng) { (result) in
+                switch result {
+                case .success(let model):
+                    DispatchQueue.main.async {
+                        self.updateView(with: model)
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
     }
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         
